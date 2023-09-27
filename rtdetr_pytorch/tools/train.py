@@ -9,6 +9,11 @@ import argparse
 import src.misc.dist as dist 
 from src.core import YAMLConfig 
 from src.solver import TASKS
+import yaml
+
+
+def print_config(config):
+    print(yaml.dump(config))
 
 
 def main(args, ) -> None:
@@ -16,13 +21,13 @@ def main(args, ) -> None:
     '''
     dist.init_distributed(backend='nccl')
     cfg = YAMLConfig(args.config, resume=args.resume, use_amp=args.amp)
+    print_config(cfg)
     solver = TASKS[cfg.yaml_cfg['task']](cfg)
     
     if args.test_only:
         solver.val()
     else:
         solver.fit()
-
 
 
 if __name__ == '__main__':
