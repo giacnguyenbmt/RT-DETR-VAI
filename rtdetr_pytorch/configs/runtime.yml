@@ -9,9 +9,8 @@ scaler:
   enabled: True
 
 
-use_ema: False
-ema:
-  type: ModelEMA
-  decay: 0.9999
-  warmups: 2000
-
+# use_ema: False
+# ema:
+#   type: ModelEMA
+#   decay: 0.9999
+#   warmups: 2000
