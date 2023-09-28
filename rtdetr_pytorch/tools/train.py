@@ -13,7 +13,7 @@ import yaml
 
 
 def print_config(config):
-    print(yaml.dump(config))
+    print(yaml.dump(config, sort_keys=False))
 
 
 def main(args, ) -> None:
@@ -21,7 +21,7 @@ def main(args, ) -> None:
     '''
     dist.init_distributed(backend='nccl')
     cfg = YAMLConfig(args.config, resume=args.resume, use_amp=args.amp)
-    print_config(cfg)
+    print_config(cfg.yaml_cfg)
     solver = TASKS[cfg.yaml_cfg['task']](cfg)
     
     if args.test_only:
